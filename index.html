@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,17 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Book Look</title>
 </head>
+
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <div class="page-header">
-                    <h1>BookLook <i class="fa fa-eye" aria-hidden="true"></i></h1>
+                    <h1>BookLook
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </h1>
                 </div>
+                <div class="book"></div>
                 <form>
                     <h3>Search by ISBN</h3>
                     <div class="form-group">
@@ -26,8 +31,17 @@
             </div>
         </div>
     </div>
+
+    <script id="book-template" type="text/x-handlebars-template">
+        <h1>{{title}}</h1>
+        <p>{{description}}</p>
+        <h3>Written by: {{author}}</h3>
+        <div> <img src="{{image}}"> </div>
+    </script>
+
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/handlebars/dist/handlebars.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
