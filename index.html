@@ -14,17 +14,17 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-8 col-md-offset-2">
                 <div class="page-header">
                     <h1>BookLook
                         <i class="fa fa-eye" aria-hidden="true"></i>
                     </h1>
                 </div>
-                <div class="book"></div>
+                <div class="books"></div>
                 <form>
-                    <h3>Search by ISBN</h3>
+                    <h3>Search by Book Title</h3>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="ISBN Number">
+                        <input type="text" class="form-control" placeholder="Write the book's title...">
                     </div>
                     <button class="btn btn-primary" type="button">Search</button>
                 </form>
@@ -33,10 +33,15 @@
     </div>
 
     <script id="book-template" type="text/x-handlebars-template">
-        <h1>{{title}}</h1>
-        <p>{{description}}</p>
-        <h3>Written by: {{author}}</h3>
-        <div> <img src="{{image}}"> </div>
+        {{#each books}}
+            <div class="book" data-id="{{id}}">
+                <h1>{{title}}</h1>
+                <p>{{description}}</p>
+                <h3>Written by: {{author}}</h3>
+                <div> <img src="{{image}}"> </div>
+                <hr>
+            </div>
+        {{/each}}
     </script>
 
     <script src="node_modules/jquery/dist/jquery.js"></script>
