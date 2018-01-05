@@ -1,18 +1,15 @@
-function displayBook(data) {
-    var dataItems = data.items;
-    var booksObject = {books: []};
-    for (i=0; i < dataItems.length; i++) {
-        var dataPath = dataItems[i].volumeInfo;
-        var bookObject = {
-            id: i,
-            title: dataPath.title,
-            description: dataPath.description,
-            author: dataPath.authors,
-            image: dataPath.imageLinks.smallThumbnail
-        };
-        booksObject.books.push(bookObject);
+var books = [];
+
+var addBook = function (data) {
+    for (i=0; i < data.length; i++) {
+        books.push({id: i, title: data[i].volumeInfo.title, description: data[i].volumeInfo.description, 
+                    authors: data[i].volumeInfo.authors, image: data[i].volumeInfo.imageLinks.smallThumbnail});
     }
-    
+    console.log(books);
+}
+
+var displayBooks = function () {
+    var booksObject = {books: books};
     var source = $('#book-template').html();
     var template = Handlebars.compile(source);
     var newHTML = template(booksObject);
@@ -25,7 +22,8 @@ var fetch = function (title) {
         url: 'https://www.googleapis.com/books/v1/volumes?q=intitle:' + title,
         success: function (data) {
             console.log(data);
-            displayBook(data);
+            addBook(data.items);
+            displayBooks();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus);
